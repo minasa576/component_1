@@ -9,9 +9,13 @@ import java.util.Scanner;
 
 final class Component1 {
     private static final String STUDENT_DATA_FILE = "student_data.csv";
-    private static final String BATCH_FOLDER_PATH = "E:\\college\\level_4\\last_semester\\cloud_computing\\assignment2\\app\\data\\batch";
+    private static final String BATCH_FOLDER_PATH =
+    "E:\\college\\level_4\\last_semester\\cloud_computing" +
+            "\\assignment2\\app\\data\\batch";
 
-    private Component1() {}
+    private Component1() {
+
+    }
 
     public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -55,7 +59,8 @@ final class Component1 {
         String courses = scanner.nextLine();
 
         try (FileWriter writer = new FileWriter(STUDENT_DATA_FILE, true)) {
-            writer.write(name + "," + id + "," + courses.replaceAll(",", ",") + "\n");
+            writer.write(name + "," + id + "," +
+                    courses.replaceAll(",", ",") + "\n");
             System.out.println("Student data added successfully!");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
@@ -81,7 +86,8 @@ final class Component1 {
         String selectedFile = eligibleFiles.get(fileNumber - 1);
         String filePath = BATCH_FOLDER_PATH + "/" + selectedFile;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        try (BufferedReader reader =
+        new BufferedReader(new FileReader(filePath));
              FileWriter writer = new FileWriter(STUDENT_DATA_FILE, true)) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -94,7 +100,8 @@ final class Component1 {
 
             System.out.println("Batch insert completed!");
         } catch (IOException e) {
-            System.out.println("Error reading or writing file: " + e.getMessage());
+            System.out.println("Error reading or writing file: "
+            + e.getMessage());
         }
     }
 
