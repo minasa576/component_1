@@ -10,8 +10,8 @@ import java.util.Scanner;
 final class Component1 {
     private static final String STUDENT_DATA_FILE = "student_data.csv";
     private static final String BATCH_FOLDER_PATH =
-    "E:\\college\\level_4\\last_semester\\cloud_computing" +
-            "\\assignment2\\app\\data\\batch";
+    "E:\\college\\level_4\\last_semester\\cloud_computing"
+           + "\\assignment2\\app\\data\\batch";
 
     private Component1() {
 
@@ -59,8 +59,8 @@ final class Component1 {
         String courses = scanner.nextLine();
 
         try (FileWriter writer = new FileWriter(STUDENT_DATA_FILE, true)) {
-            writer.write(name + "," + id + "," +
-                    courses.replaceAll(",", ",") + "\n");
+            writer.write(name + "," + id + ","
+                   + courses.replaceAll(",", ",") + "\n");
             System.out.println("Student data added successfully!");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
