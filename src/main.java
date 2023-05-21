@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class main {
+class main {
     private static final String STUDENT_DATA_FILE = "student_data.csv";
     private static final String BATCH_FOLDER_PATH = "E:\\college\\level_4\\last_semester\\cloud_computing\\assignment2\\app\\data\\batch";
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
         displayMenu();
 
@@ -53,10 +53,10 @@ public class main {
         String courses = scanner.nextLine();
 
         try (FileWriter writer = new FileWriter(STUDENT_DATA_FILE, true)) {
-            writer.write(name + "," + id + "," + courses.replaceAll(",", ",") + "\n");
+            writer.write(name+","+id+","+courses.replaceAll(",", ",") + "\n");
             System.out.println("Student data added successfully!");
         } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
+            System.out.println("Error writing to file: "+e.getMessage());
         }
     }
 
@@ -69,7 +69,7 @@ public class main {
 
         System.out.println("Eligible batch files:");
         for (int i = 0; i < eligibleFiles.size(); i++) {
-            System.out.println((i + 1) + "- " + eligibleFiles.get(i));
+            System.out.println((i + 1)+"- " + eligibleFiles.get(i));
         }
 
         System.out.print("Enter the file number to insert students from: ");
@@ -77,7 +77,7 @@ public class main {
         scanner.nextLine(); // Consume the newline character
 
         String selectedFile = eligibleFiles.get(fileNumber - 1);
-        String filePath = BATCH_FOLDER_PATH + "/"+selectedFile;
+        String filePath = BATCH_FOLDER_PATH+"/"+selectedFile;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath));
              FileWriter writer = new FileWriter(STUDENT_DATA_FILE, true)) {
