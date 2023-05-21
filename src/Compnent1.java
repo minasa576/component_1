@@ -8,7 +8,13 @@ import java.util.List;
 import java.util.Scanner;
 
 final class Component1 {
+    /**
+     * The file path for the student data file.
+     */
     private static final String STUDENT_DATA_FILE = "student_data.csv";
+    /**
+     * The folder path for batch files.
+     */
     private static final String BATCH_FOLDER_PATH =
     "E:\\college\\level_4\\last_semester\\cloud_computing"
            + "\\assignment2\\app\\data\\batch";
