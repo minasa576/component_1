@@ -53,10 +53,10 @@ class main {
         String courses = scanner.nextLine();
 
         try (FileWriter writer = new FileWriter(STUDENT_DATA_FILE, true)) {
-            writer.write(name+","+id+","+courses.replaceAll(",", ",")+"\n");
+            writer.write(name + "," + id + "," + courses.replaceAll(",", ",") + "\n");
             System.out.println("Student data added successfully!");
         } catch (IOException e) {
-            System.out.println("Error writing to file: "+e.getMessage());
+            System.out.println("Error writing to file: " + e.getMessage());
         }
     }
 
@@ -68,8 +68,8 @@ class main {
         }
 
         System.out.println("Eligible batch files:");
-        for (int i = 0; i < eligibleFiles.size(); i++) {
-            System.out.println((i+1)+"- "+eligibleFiles.get(i));
+        for (int i = 0; i < eligibleFiles.size(); i++ ) {
+            System.out.println((i + 1) + "- " + eligibleFiles.get(i));
         }
 
         System.out.print("Enter the file number to insert students from: ");
@@ -77,7 +77,7 @@ class main {
         scanner.nextLine(); // Consume the newline character
 
         String selectedFile = eligibleFiles.get(fileNumber - 1);
-        String filePath = BATCH_FOLDER_PATH+"/"+selectedFile;
+        String filePath = BATCH_FOLDER_PATH + "/" + selectedFile;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath));
              FileWriter writer = new FileWriter(STUDENT_DATA_FILE, true)) {
@@ -85,14 +85,14 @@ class main {
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(";");
                 for (String element : data) {
-                    writer.write(element+",");
+                    writer.write(element + ",");
                 }
                 writer.write("\n");
             }
 
             System.out.println("Batch insert completed!");
         } catch (IOException e) {
-            System.out.println("Error reading or writing file: "+e.getMessage());
+            System.out.println("Error reading or writing file: " + e.getMessage());
         }
     }
 
