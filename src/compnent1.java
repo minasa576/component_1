@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class main {
+class component1 {
     private static final String STUDENT_DATA_FILE = "student_data.csv";
     private static final String BATCH_FOLDER_PATH = "E:\\college\\level_4\\last_semester\\cloud_computing\\assignment2\\app\\data\\batch";
 
