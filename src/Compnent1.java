@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class component1 {
+final class Component1 {
     private static final String STUDENT_DATA_FILE = "student_data.csv";
     private static final String BATCH_FOLDER_PATH = "E:\\college\\level_4\\last_semester\\cloud_computing\\assignment2\\app\\data\\batch";
+
+    private Component1() {}
 
     public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -42,7 +44,7 @@ class component1 {
         System.out.println("2- Add batch students data");
     }
 
-    private static void addStudentData(Scanner scanner) {
+    private static void addStudentData(final Scanner scanner) {
         System.out.print("Enter student name: ");
         String name = scanner.nextLine();
 
@@ -60,7 +62,7 @@ class component1 {
         }
     }
 
-    private static void batchInsert(Scanner scanner) {
+    private static void batchInsert(final Scanner scanner) {
         List<String> eligibleFiles = listEligibleFiles();
         if (eligibleFiles.isEmpty()) {
             System.out.println("No eligible batch files found.");
@@ -68,7 +70,7 @@ class component1 {
         }
 
         System.out.println("Eligible batch files:");
-        for (int i = 0; i < eligibleFiles.size(); i++ ) {
+        for (int i = 0; i < eligibleFiles.size(); i++) {
             System.out.println((i + 1) + "- " + eligibleFiles.get(i));
         }
 
