@@ -15,8 +15,7 @@ final class Component1 {
     /**
      * The folder path for batch files.
      */
-    private static final String BATCH_FOLDER_PATH =
-    "/app/data/batch/";
+    private static final String BATCH_FOLDER_PATH = "/app/data/batch/";
 
     private Component1() {
 
@@ -63,7 +62,7 @@ final class Component1 {
         System.out.print("Enter student courses (comma-separated list): ");
         String courses = scanner.nextLine();
 
-        try (FileWriter writer = new FileWriter(STUDENT_DATA_FILE, true)) {
+        try (FileWriter writer = new FileWriter(BATCH_FOLDER_PATH+STUDENT_DATA_FILE, true)) {
             writer.write(name + "," + id + ","
                    + courses.replaceAll(",", ",") + "\n");
             System.out.println("Student data added successfully!");
@@ -89,11 +88,11 @@ final class Component1 {
         scanner.nextLine(); // Consume the newline character
 
         String selectedFile = eligibleFiles.get(fileNumber - 1);
-        String filePath = BATCH_FOLDER_PATH + "/" + selectedFile;
+        String filePath = BATCH_FOLDER_PATH + selectedFile;
 
         try (BufferedReader reader =
         new BufferedReader(new FileReader(filePath));
-             FileWriter writer = new FileWriter(STUDENT_DATA_FILE, true)) {
+             FileWriter writer = new FileWriter(BATCH_FOLDER_PATH+STUDENT_DATA_FILE, true)) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(";");

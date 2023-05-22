@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  first_component:
+    image: component1:latest
+    stdin_open: true # docker run -i
+    build:
+      context: .
+    volumes:
+      - ../batch:/app/data/batch
+  second_component:
+    image: component2:latest
+    stdin_open: true # docker run -i
+    build:
+      context: .
+    volumes:
+      - ../batch:/app/data/batch
