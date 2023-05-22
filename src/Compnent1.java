@@ -16,8 +16,7 @@ final class Component1 {
      * The folder path for batch files.
      */
     private static final String BATCH_FOLDER_PATH =
-    "E:\\college\\level_4\\last_semester\\cloud_computing"
-           + "\\assignment2\\app\\data\\batch";
+    "/app/data/batch/";
 
     private Component1() {
 
