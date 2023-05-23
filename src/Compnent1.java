@@ -11,15 +11,12 @@ final class Component1 {
     /**
      * The file path for the student data file.
      */
-    private static final String STUDENT_DATA_FILE = "student_data.csv";
+    private static final String STUDENT_DATA_FILE = "/student_data.csv";
     /**
      * The folder path for batch files.
      */
-    private static final String BATCH_FOLDER_PATH = "/app/data/batch/";
-
-    private Component1() {
-
-    }
+    private static final String READING_FOLDER = System.getenv("READ_BATCH");;
+    private static final String WRITE_FOLDER = System.getenv("WRITE_BATCH");;
 
     public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -62,14 +59,14 @@ final class Component1 {
         System.out.print("Enter student courses (comma-separated list): ");
         String courses = scanner.nextLine();
 
-        try (FileWriter writer = new FileWriter(BATCH_FOLDER_PATH+STUDENT_DATA_FILE, true)) {
-            writer.write(name + "," + id + ","
-                   + courses.replaceAll(",", ",") + "\n");
+        try (FileWriter writer = new FileWriter(WRITE_FOLDER + STUDENT_DATA_FILE, true)) {
+            writer.write(name + "," + id + "," + courses.replaceAll(",", ",") + "\n");
             System.out.println("Student data added successfully!");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
+
 
     private static void batchInsert(final Scanner scanner) {
         List<String> eligibleFiles = listEligibleFiles();
@@ -88,11 +85,10 @@ final class Component1 {
         scanner.nextLine(); // Consume the newline character
 
         String selectedFile = eligibleFiles.get(fileNumber - 1);
-        String filePath = BATCH_FOLDER_PATH + selectedFile;
+        String filePath = WRITE_FOLDER + selectedFile;
 
-        try (BufferedReader reader =
-        new BufferedReader(new FileReader(filePath));
-             FileWriter writer = new FileWriter(BATCH_FOLDER_PATH+STUDENT_DATA_FILE, true)) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath));
+             FileWriter writer = new FileWriter(WRITE_FOLDER+STUDENT_DATA_FILE, true)) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(";");
@@ -101,18 +97,19 @@ final class Component1 {
                 }
                 writer.write("\n");
             }
-
+                reader.close();
+                writer.close();
             System.out.println("Batch insert completed!");
         } catch (IOException e) {
             System.out.println("Error reading or writing file: "
-            + e.getMessage());
+                    + e.getMessage());
         }
     }
 
     private static List<String> listEligibleFiles() {
         List<String> eligibleFiles = new ArrayList<>();
 
-        File batchFolder = new File(BATCH_FOLDER_PATH);
+        File batchFolder = new File(WRITE_FOLDER);
         File[] files = batchFolder.listFiles();
         if (files != null) {
             for (File file : files) {
